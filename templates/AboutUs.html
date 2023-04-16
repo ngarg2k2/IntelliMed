@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page With Light/Dark Mode</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+    <main>
+        <div class="big-wrapper light">
+            <img src="{{url_for('static', filename='shape.png')}}" alt="" class="shape" />
+
+            <header>
+                <div class="container">
+                    <div class="logo">
+                        <img src="{{url_for('static', filename='logo.png')}}" alt="Logo" />
+                        <h3>IntelliMed</h3>
+                    </div>
+
+                    <div class="links">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/AboutUs">About Us</a></li>
+                            <li><a href="/contact">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="overlay"></div>
+
+                    <div class="hamburger-menu">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- <div class="showcase-area"> -->
+            <div class="container">
+                <p class="changes">We are developing a system that has the potential to revolutionize healthcare delivery. Our system
+                    accurately predicts diseases based on symptoms and recommends appropriate medicines using 
+                    machine learning techniques such as Random Forest models. These models analyze large
+                    amounts of medical data and identify patterns and relationships between symptoms, diseases, and
+                    medicines used to treat them.
+                </p>
+                <br>
+                <p class="changes">
+
+                    Our system is designed to help people purchase medicine from a smart store. The store's inventory of
+                    medicines is updated based on predictions of previous usage, ensuring that the store always has
+                    enough stock of the most frequently used medicines while avoiding unnecessary stock of less
+                    frequently used ones. This approach optimizes medicine inventory management, reduces costs and waste
+                    associated with medicine inventory management, and improves the availability of medicines for
+                    patients.
+                </p>
+                <br>
+                <p class="changes">
+                    Machine learning techniques like LSTM models have the potential to improve healthcare outcomes and
+                    patient satisfaction, particularly in developing countries where access to medical professionals and
+                    resources is limited. Our system can provide a reliable and efficient solution for disease
+                    prediction and medicine recommendation, potentially improving healthcare outcomes and making
+                    healthcare more accessible to everyone.
+
+                </p>
+                <br>
+                <p class="changes">
+
+                    Our system can reduce the burden on medical professionals by providing accurate and reliable disease
+                    predictions and medicine recommendations. This could potentially reduce the strain on the healthcare
+                    system, allowing medical professionals to focus on more complex cases.
+                </p>
+                <br>
+                <p class="changes">
+
+                    In conclusion, our system has the potential to improve healthcare outcomes, reduce costs and waste
+                    associated with medicine inventory management, and make healthcare more accessible to everyone. By
+                    leveraging the power of advanced machine learning techniques such as LSTM models, we can provide a
+                    reliable and efficient system for disease prediction and medicine recommendation that can
+                    revolutionize the way healthcare is delivered around the world.</p>
+                </p>
+                <!-- </div> -->
+            </div>
+
+            <div class="bottom-area">
+                <div class="container">
+                    <button class="toggle-btn">
+                        <i class="far fa-moon"></i>
+                        <i class="far fa-sun"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript Files -->
+
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="{{url_for('static', filename='app.js')}}"></script>
+</body>
+
+</html>
