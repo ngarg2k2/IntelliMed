@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Inventory | IntelliMed{% endblock %}
+{% block content %}
+<section class="page-heading compact"><p class="eyebrow">Operations</p><h1>Inventory forecast</h1><p>Predictions use medicine identity, calendar month, and the latest three monthly usage totals.</p></section>
+<section class="admin-table-wrap"><table><thead><tr><th>Medicine</th><th>Current stock</th><th>Next month demand</th><th>Suggested order</th><th>Restock</th></tr></thead><tbody>{% for item in forecasts %}<tr><td><strong>{{ item.name }}</strong></td><td>{{ item.stock }}</td><td><span class="metric">{{ item.forecast }}</span></td><td><span class="metric accent">{{ item.suggested }}</span></td><td><form action="/admin/restock" method="post"><input type="hidden" name="csrf" value="{{ csrf_token }}"><input type="hidden" name="medicine_id" value="{{ item.id }}"><input aria-label="Restock quantity for {{ item.name }}" type="number" name="quantity" value="{{ item.suggested if item.suggested else 1 }}" min="1" max="1000"><button class="icon-button filled" title="Apply restock" aria-label="Apply restock"><i data-lucide="package-plus"></i></button></form></td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Cart | IntelliMed{% endblock %}
+{% block content %}
+<section class="page-heading compact"><p class="eyebrow">Your order</p><h1>Review cart</h1></section>
+<section class="checkout-layout">
+  <div class="line-items">{% if items %}{% for item in items %}<article><div class="product-icon"><i data-lucide="pill"></i></div><div><h2>{{ item.medicine.name }}</h2><p>{{ item.quantity }} × ₹{{ '%.2f'|format(item.medicine.price) }}</p></div><strong>₹{{ '%.2f'|format(item.subtotal) }}</strong></article>{% endfor %}{% else %}<div class="empty-state"><i data-lucide="shopping-bag"></i><h2>Your cart is empty</h2><a class="text-link" href="/catalog">Browse pharmacy</a></div>{% endif %}</div>
+  <aside class="order-summary"><h2>Order summary</h2><div><span>Subtotal</span><strong>₹{{ '%.2f'|format(total) }}</strong></div><div><span>Demo fulfillment</span><strong>₹0.00</strong></div><div class="total"><span>Total</span><strong>₹{{ '%.2f'|format(total) }}</strong></div>{% if items %}<form action="/checkout" method="post"><input type="hidden" name="csrf" value="{{ csrf_token }}"><button class="button" type="submit"><i data-lucide="lock-keyhole"></i>{% if user %}Complete order{% else %}Sign in to checkout{% endif %}</button></form>{% endif %}<small>Demo purchase only. No payment is collected.</small></aside>
+</section>
+{% endblock %}

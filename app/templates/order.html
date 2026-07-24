@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block title %}Order confirmed | IntelliMed{% endblock %}
+{% block content %}<section class="confirmation"><i data-lucide="circle-check-big"></i><p class="eyebrow">Order {{ order.id }}</p><h1>Purchase recorded.</h1><p>Stock was decremented and this month’s usage total was updated for forecasting.</p><div>{% for item in order.items %}<span>{{ item.quantity }} × {{ item.medicine.name }}</span>{% endfor %}</div><strong>Total ₹{{ '%.2f'|format(order.total) }}</strong><a class="button" href="/catalog">Return to pharmacy</a></section>{% endblock %}

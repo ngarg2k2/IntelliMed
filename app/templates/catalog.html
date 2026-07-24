@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Pharmacy | IntelliMed{% endblock %}
+{% block content %}
+<section class="page-heading"><p class="eyebrow">Pharmacy catalog</p><h1>Everyday care, clearly presented.</h1><p>Always confirm allergies, interactions, dosage, pregnancy, age, and existing conditions with a qualified professional.</p></section>
+<section class="section-shell product-grid">
+{% for medicine in medicines %}
+  <article class="product-card catalog-card"><span class="category">{{ medicine.category }}</span><div class="product-icon"><i data-lucide="pill"></i></div><h2>{{ medicine.name }}</h2><p>{{ medicine.description }}</p><div class="stock-row"><strong>₹{{ '%.2f'|format(medicine.price) }}</strong><span class="{% if medicine.stock <= medicine.reorder_level %}low-stock{% endif %}">{{ medicine.stock }} available</span></div>
+  <form action="/cart/add" method="post"><input type="hidden" name="csrf" value="{{ csrf_token }}"><input type="hidden" name="medicine_id" value="{{ medicine.id }}"><label>Quantity<input type="number" name="quantity" value="1" min="1" max="10"></label><button class="icon-button filled" title="Add to cart" aria-label="Add {{ medicine.name }} to cart"><i data-lucide="plus"></i></button></form></article>
+{% endfor %}
+</section>
+{% endblock %}

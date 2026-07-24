@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}IntelliMed | Care and stock intelligence{% endblock %}
+{% block content %}
+<section class="workspace-intro">
+  <div>
+    <p class="eyebrow">Care and stock intelligence</p>
+    <h1>Start with symptoms.<br>Finish with accountable stock.</h1>
+    <p class="lede">Assess a symptom pattern, review pharmacist-checkable options, and record each purchase for demand forecasting.</p>
+    <div class="button-row"><a class="button" href="/assessment"><i data-lucide="clipboard-pulse"></i>Start assessment</a><a class="text-link" href="/catalog">Browse pharmacy <i data-lucide="arrow-right"></i></a></div>
+  </div>
+  <aside class="safety-panel">
+    <i data-lucide="shield-check"></i>
+    <h2>Safety comes first</h2>
+    <p>Chest pain or shortness of breath triggers urgent-care guidance, never a product recommendation.</p>
+  </aside>
+</section>
+<section class="process-band" aria-label="How IntelliMed works">
+  <div><span>01</span><i data-lucide="list-checks"></i><strong>Describe</strong><p>Select current symptoms.</p></div>
+  <div><span>02</span><i data-lucide="scan-search"></i><strong>Assess</strong><p>Review an ML pattern match.</p></div>
+  <div><span>03</span><i data-lucide="badge-check"></i><strong>Confirm</strong><p>Check options with a pharmacist.</p></div>
+  <div><span>04</span><i data-lucide="chart-no-axes-combined"></i><strong>Forecast</strong><p>Purchases update demand history.</p></div>
+</section>
+<section class="section-shell">
+  <div class="section-heading"><div><p class="eyebrow">Available now</p><h2>Everyday care essentials</h2></div><a class="text-link" href="/catalog">View all <i data-lucide="arrow-right"></i></a></div>
+  <div class="product-grid">
+    {% for medicine in medicines %}
+    <article class="product-card"><span class="category">{{ medicine.category }}</span><div class="product-icon"><i data-lucide="pill"></i></div><h3>{{ medicine.name }}</h3><p>{{ medicine.description }}</p><div><strong>₹{{ '%.2f'|format(medicine.price) }}</strong><span>{{ medicine.stock }} in stock</span></div></article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

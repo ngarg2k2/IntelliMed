@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "intellimed"
+version = "1.0.0"
+description = "Educational symptom assessment and smart pharmacy inventory demo"
+requires-python = ">=3.11,<3.15"
+dependencies = [
+    "fastapi==0.116.1",
+    "uvicorn[standard]==0.35.0",
+    "jinja2==3.1.6",
+    "sqlalchemy==2.0.41",
+    "python-multipart==0.0.20",
+    "itsdangerous==2.2.0",
+    "pwdlib[argon2]==0.2.1",
+    "psycopg[binary]==3.2.9",
+    "numpy==2.4.2",
+    "scikit-learn==1.7.1",
+    "joblib==1.5.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx==0.28.1",
+    "pytest==8.4.1",
+    "ruff==0.12.4",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

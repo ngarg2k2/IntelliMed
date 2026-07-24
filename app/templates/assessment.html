@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Symptom assessment | IntelliMed{% endblock %}
+{% block content %}
+<section class="page-heading"><p class="eyebrow">Educational assessment</p><h1>What are you experiencing?</h1><p>Select all current symptoms. Results identify a broad pattern and cannot diagnose a condition.</p></section>
+<section class="tool-layout">
+  <form class="assessment-form" action="/assessment" method="post">
+    <input type="hidden" name="csrf" value="{{ csrf_token }}">
+    <fieldset><legend class="sr-only">Symptoms</legend><div class="symptom-grid">
+      {% for symptom in symptoms %}<label class="symptom-option"><input type="checkbox" name="symptoms" value="{{ symptom }}" {% if selected and symptom in selected %}checked{% endif %}><span><i data-lucide="plus"></i>{{ symptom.replace('_', ' ')|title }}</span></label>{% endfor %}
+    </div></fieldset>
+    <button class="button" type="submit"><i data-lucide="scan-search"></i>Assess pattern</button>
+  </form>
+  <aside class="result-panel {% if result and result.urgent %}urgent{% endif %}">
+    {% if result %}
+      <p class="eyebrow">Assessment result</p><h2>{{ result.label }}</h2>
+      {% if not result.urgent and result.confidence %}<div class="confidence"><span style="width: {{ (result.confidence * 100)|round }}%"></span></div><small>{{ (result.confidence * 100)|round }}% model confidence</small>{% endif %}
+      <p>{{ result.message }}</p>
+      {% if recommendations %}<h3>Options to discuss</h3>{% for medicine in recommendations %}<div class="recommendation"><i data-lucide="pill"></i><div><strong>{{ medicine.name }}</strong><span>{{ medicine.description }}</span></div></div>{% endfor %}<a class="button button-secondary" href="/catalog">Review in pharmacy</a>{% endif %}
+    {% else %}<i class="result-placeholder" data-lucide="activity"></i><h2>Your result appears here</h2><p>Emergency symptoms are intercepted before model inference.</p>{% endif %}
+  </aside>
+</section>
+{% endblock %}
