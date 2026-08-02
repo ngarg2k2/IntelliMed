@@ -2,6 +2,16 @@
 
 IntelliMed is an end-to-end educational healthcare decision-support and smart pharmacy prototype. It combines symptom-pattern classification, pharmacist-reviewable over-the-counter options, catalog and checkout workflows, purchase-driven inventory usage, and ML demand forecasting.
 
+## Live demo
+
+IntelliMed is deployed at [intellimed-gjnq.onrender.com](https://intellimed-gjnq.onrender.com).
+
+- Application hosting: Render free web service
+- Production database: Neon PostgreSQL
+- Health check: [`/health`](https://intellimed-gjnq.onrender.com/health)
+
+The free Render instance spins down after inactivity, so the first request may take about a minute. Production administrator credentials are stored only as Render environment secrets and are not included in this repository.
+
 ## Safety boundary
 
 This project does not diagnose disease or prescribe medicine. Recommendations are explicit, reviewable mappings to demo OTC catalog entries. Chest pain and shortness of breath bypass inference and display urgent-care guidance. Any real deployment requires clinical governance, validated data, regulatory review, privacy controls, and qualified pharmacist oversight.
@@ -42,9 +52,9 @@ ruff check .
 
 The SQLite database is created at `data/intellimed.db`; trained artifacts are written to `artifacts/`. Both are generated and excluded from Git. Set `INTELLIMED_DATABASE_URL` to use another SQLAlchemy-compatible database in deployment.
 
-## Free deployment
+## Deployment
 
-The recommended free demo setup is a Render web service with a Neon PostgreSQL database. Do not use SQLite on Render's free tier: its filesystem is ephemeral, so accounts, orders, and inventory changes would be lost whenever the service restarts or spins down.
+The live demo uses a Render web service with a Neon PostgreSQL database. Do not use SQLite on Render's free tier: its filesystem is ephemeral, so accounts, orders, and inventory changes would be lost whenever the service restarts or spins down.
 
 1. Push this project to a GitHub repository.
 2. Create a free project at [Neon](https://console.neon.tech) and copy its PostgreSQL connection string from **Connect**.
